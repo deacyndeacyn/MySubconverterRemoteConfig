@@ -7,14 +7,18 @@
 - 主要添加了这[https://github.com/blackmatrix7/ios_rule_script ][https://github.com/ACL4SSR/ACL4SSR/tree/master ]两个项目的规则集
 - 使用了[https://www.jsdelivr.com/github ]的CDN加速
 
-## 我用过的感觉好用的机场
+## 买过用过的机场
+
+### 月抛
 - paoluz(包月)(20240223)
 - 咸鱼加速器(包月)(20240223)
 - coffeecloud(包月)(20240713)
 
-## 我知道的可以购买的 流量包 机场
+### 流量包
 - 飞鸟云(20240819)
 - 水木云(20240819)
 - 八戒(20240819)
 - 魔戒(20240819)
 - 桑熊云(20240819)
+- 樱桃机场(20250502)
+- XFLTD(20250502)
