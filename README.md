@@ -1,5 +1,5 @@
 ## 文件结构
-- main(主文件):MyRemoteConfig
+- main:MyRemoteConfig.ini
 - 其他为引用文件
 
 ## 文件说明
