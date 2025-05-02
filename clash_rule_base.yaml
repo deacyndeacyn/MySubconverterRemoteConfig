@@ -4,7 +4,7 @@ bind-address: "*"  # 绑定地址，仅允许其他设备通过这个地址访�
 mode: rule
 log-level: info
 ipv6: true  # ipv6 支持
-find-process-mode: strict
+find-process-mode: strict  # 控制是否让 Clash 去匹配进程 always 开启，强制匹配所有进程 strict 默认，由 Clash 判断是否开启 off 不匹配进程，推荐在路由器上使用此模式
 geo-auto-update: true  # 自动更新 GEO
 geo-update-interval: 24  # 更新间隔，单位为小时
 profile:
