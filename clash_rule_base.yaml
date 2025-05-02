@@ -43,10 +43,11 @@ tun:  # Tunnel配置
 
 
 dns:
+  cache-algorithm: arc
   enable: true
   listen: :1053
   ipv6: true
-  respect-rules: true  # dns 连接遵守路由规则 配置后面的nameserver、fallback和nameserver-policy向dns服务器的连接过程是否遵守遵守rules规则
+  #respect-rules: true  # dns 连接遵守路由规则 配置后面的nameserver、fallback和nameserver-policy向dns服务器的连接过程是否遵守遵守rules规则
   enhanced-mode: fake-ip  # fake-ip/redir-host
 
   
