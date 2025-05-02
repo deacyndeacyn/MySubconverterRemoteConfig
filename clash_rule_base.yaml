@@ -53,10 +53,10 @@ dns:
   
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:  # fakeip 过滤，以下地址不会下发 fakeip 映射用于连接
-    #- "+.+localdomain"
-    #- "xbox.*.*.microsoft.com"
-    #- "stun.*.*.*"
-    #- "stun.*.*"
+    - "+.+localdomain"
+    - "xbox.*.*.microsoft.com"
+    - "stun.*.*.*"
+    - "stun.*.*"
 
     - '+.lan'
     - '+.local'
