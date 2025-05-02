@@ -1,38 +1,70 @@
 mixed-port: 7890  # socks5/http 端口
 allow-lan: true  # 允许局域网连接
-bind-address: "*"
+bind-address: "*"  # 绑定地址，仅允许其他设备通过这个地址访问
 mode: rule
 log-level: info
-ipv6: true
+ipv6: true  # ipv6 支持
 find-process-mode: strict
-geo-auto-update: true
-geo-update-interval: 24
+geo-auto-update: true  # 自动更新 GEO
+geo-update-interval: 24  # 更新间隔，单位为小时
 profile:
   store-selected: true
   store-fake-ip: true
-unified-delay: true
-tcp-concurrent: true
+unified-delay: true  # 开启统一延迟时，会计算 RTT，以消除连接握手等带来的不同类型节点的延迟差异
+tcp-concurrent: true  # TCP并发 同时对所有ip进行连接，返回延迟最低的地址
+keep-alive-interval: 15  # 缓解移动设备耗电问题 TCP Keep Alive 包的间隔，单位为秒
+keep-alive-idle: 15  # TCP Keep Alive 的最大空闲时间
+global-client-fingerprint: random  # 全局客户端指纹 随机指纹
+
+
+sniffer:  # 域名嗅探  域名嗅探的作用是在网络流量中识别出实际访问的域名，即便某些情况下初始的流量信息中可能只有 IP 地址。通过嗅探到域名，Clash 就能依据域名进行更精准的规则匹配和路由决策。
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true  # 是否使用嗅探结果作为实际访问，默认为 true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:  # 跳过嗅探的域名列表，使用域名通配
+    - "Mijia Cloud"
+
+
+tun:  # Tunnel配置
+  enable: true
+  stack: system
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+  - any:53
+  - tcp://any:53
+  mtu: 9000
+
 
 dns:
   enable: true
-  prefer-h3: true
-  listen: 0.0.0.0:53
+  listen: :1053
   ipv6: true
-  respect-rules: true  # 配置后面的nameserver、fallback和nameserver-policy向dns服务器的连接过程是否遵守遵守rules规则
-  enhanced-mode: fake-ip  # normal/fake-ip/redir-host
+  respect-rules: true  # dns 连接遵守路由规则 配置后面的nameserver、fallback和nameserver-policy向dns服务器的连接过程是否遵守遵守rules规则
+  enhanced-mode: fake-ip  # fake-ip/redir-host
 
   
-  fake-ip-range: 198.18.0.1/16  
-  fake-ip-filter:  # 配置不使用 fake-ip 的域名
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter:  # fakeip 过滤，以下地址不会下发 fakeip 映射用于连接
     #- "+.+localdomain"
     #- "xbox.*.*.microsoft.com"
     #- "stun.*.*.*"
     #- "stun.*.*"
 
+    - '+.lan'
+    - '+.local'
+
     - "*.*.xboxlive.com"
     - "*.*.stun.playstation.net"
     - "*.*.*.srv.nintendo.net"
 
+    - '*'
     - "*.jianguoyun.com"  # 坚果云
     - "*.xiaomi.com"
     - "*.lan"
@@ -103,7 +135,7 @@ dns:
     - speedtest.cros.wr.pvp.net
     
     
-  default-nameserver:  #用于解析dns的dns
+  default-nameserver:  # 默认 DNS, 用于解析 DNS 服务器 的域名
     - 114.114.114.114 # 运营商
     - 223.5.5.5  # a
     - 119.29.29.29  # t
@@ -113,7 +145,7 @@ dns:
     - system
 
     
-  nameserver:
+  nameserver:  # DNS 主要域名配置 这部分为主要 DNS 配置，影响所有直连，确保使用对大陆解析精准的 DNS
     - 114.114.114.114  # 运营商
     - 223.5.5.5  # a
     - 119.29.29.29  # t
@@ -125,36 +157,24 @@ dns:
     - https://dns.google/dns-query  # google
     - https://dns.cloudflare.com/dns-query  # cf
     - https://dns.twnic.tw/dns-query  # 台湾101
+
     
-
-  proxy-server-nameserver:  #代理节点域名解析服务器，仅用于解析代理节点的域名
-    - https://dns.alidns.com/dns-query  # a
-    - https://doh.pub/dns-query  # t
-    - https://dns.google/dns-query  # google
-    - https://dns.cloudflare.com/dns-query  # cf
-    - https://dns.twnic.tw/dns-query  # 台湾101
-
-
-  sniffer:  # 域名嗅探  域名嗅探的作用是在网络流量中识别出实际访问的域名，即便某些情况下初始的流量信息中可能只有 IP 地址。通过嗅探到域名，Clash 就能依据域名进行更精准的规则匹配和路由决策。
-    enable: true
-    sniff:
-      HTTP:
-        ports: [80, 8080-8880]
-        override-destination: true
-      TLS:
-        ports: [443, 8443]
-      QUIC:
-        ports: [443, 8443]
-    skip-domain:
-      - "Mijia Cloud"
-
-
-  tun:  # Tunnel配置
-    enable: true
-    stack: system
-    auto-route: true
-    auto-detect-interface: true
-    dns-hijack:
-    - any:53
-    - tcp://any:53
-    mtu: 9000
+  nameserver-policy:
+    "geosite:cn":
+      - 114.114.114.114  # 运营商
+      - 223.5.5.5  # a
+      - 119.29.29.29  # t
+      - 180.76.76.76  # b
+      - 8.8.8.8  # google
+      - 1.1.1.1  # cf
+      - https://dns.alidns.com/dns-query  # a
+      - https://doh.pub/dns-query  # t
+      - https://dns.google/dns-query  # google
+      - https://dns.cloudflare.com/dns-query  # cf
+      - https://dns.twnic.tw/dns-query  # 台湾101
+    "geosite:private":
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+    "geosite:!cn,!private": 
+      - "tls://dns.google"
+      - "tls://cloudflare-dns.com"
