@@ -1,3 +1,6 @@
+## 订阅转换远程配置链接
+- https://raw.githubusercontent.com/xiaozhidepikaqiu/MySubconverterRemoteConfig/refs/heads/main/MyRemoteConfig.ini
+  
 ## 文件结构
 - main : MyRemoteConfig.ini
 
