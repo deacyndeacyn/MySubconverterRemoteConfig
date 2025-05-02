@@ -47,7 +47,6 @@ dns:
   enable: true
   listen: :1053
   ipv6: true
-  #respect-rules: true  # dns 连接遵守路由规则 配置后面的nameserver、fallback和nameserver-policy向dns服务器的连接过程是否遵守遵守rules规则
   enhanced-mode: fake-ip  # fake-ip/redir-host
 
   
@@ -176,6 +175,4 @@ dns:
     "geosite:private":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
-    "geosite:!cn,!private": 
-      - "tls://dns.google"
-      - "tls://cloudflare-dns.com"
+    "geosite:category-ads-all": rcode://success  # 好像是去广告的么？
