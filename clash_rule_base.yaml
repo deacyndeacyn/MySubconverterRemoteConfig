@@ -151,9 +151,9 @@ dns:
     
   nameserver:  # DNS 主要域名配置 这部分为主要 DNS 配置，影响所有直连，确保使用对大陆解析精准的 DNS（在这个配置中，只用来解析没匹配到nameserver-policy的规则，几乎都是访问外网，因此使用google，cf和101的doh）
     - https://dns.cloudflare.com/dns-query  # cf
-    - https://dns.quad9.net/dns-query  # ibm
     - https://dns.adguard-dns.com/dns-query  # adguard
-    - https://dns.google/dns-query  # google
+    # - https://dns.quad9.net/dns-query  # ibm
+    # - https://dns.google/dns-query  # google
 
 
   proxy-server-nameserver:  # # 用于解析代理节点的域名
