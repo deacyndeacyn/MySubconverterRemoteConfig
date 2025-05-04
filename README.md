@@ -1,3 +1,5 @@
+# 计划使用Loyalsoldier的geo数据作为分流规则
+
 ## 订阅转换远程配置链接
 - https://raw.githubusercontent.com/xiaozhidepikaqiu/MySubconverterRemoteConfig/refs/heads/main/MyRemoteConfig.ini
   
