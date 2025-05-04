@@ -165,3 +165,6 @@ dns:
     "geosite:cn,apple-cn,category-games@cn,private":
       - 114.114.114.114 # 运营商
       - 223.6.6.6  # a
+    "geoip:cn":
+      - 114.114.114.114 # 运营商
+      - 223.6.6.6  # a
