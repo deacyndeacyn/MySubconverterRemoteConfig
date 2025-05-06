@@ -46,8 +46,8 @@ tun:  # Tunnel配置
 
 geodata-mode: true
 geox-url:
-  geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
-  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+  geoip: "https://gh-proxy.com/raw.githubusercontent.com/Loyalsoldier/geoip/release/geoip.dat"
+  geosite: "https://gh-proxy.com/github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat"
 
 
 dns:
@@ -55,116 +55,126 @@ dns:
   enable: true
   listen: 0.0.0.0:1053
   ipv6: true
-  respect-rules: true
+  # respect-rules: true
   enhanced-mode: fake-ip  # fake-ip/redir-host
 
   
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:  # fakeip 过滤，以下地址不会下发 fakeip 映射用于连接
-    - "+.+localdomain"
-    - "xbox.*.*.microsoft.com"
-    - "stun.*.*.*"
-    - "stun.*.*"
+    - 'geosite:connectivity-check'
+    - 'geosite:private'
+    
+    # - "+.+localdomain"
+    # - "xbox.*.*.microsoft.com"
+    # - "stun.*.*.*"
+    # - "stun.*.*"
 
-    - '+.lan'
-    - '+.local'
+    # - '+.lan'
+    # - '+.local'
 
-    - "*.*.xboxlive.com"
-    - "*.*.stun.playstation.net"
-    - "*.*.*.srv.nintendo.net"
+    # - "*.*.xboxlive.com"
+    # - "*.*.stun.playstation.net"
+    # - "*.*.*.srv.nintendo.net"
 
-    - '*'
-    - "*.jianguoyun.com"  # 坚果云
-    - "*.xiaomi.com"
-    - "*.lan"
-    - "*.ntp.org.cn"
-    - "*.openwrt.pool.ntp.org"
-    - "*.time.edu.cn"
-    - "*.music.163.com"
-    - "*.126.net"
-    - "*.kuwo.cn"
-    - "*.music.migu.cn"
-    - "*.msftconnecttest.com"
-    - "*.msftncsi.com"
-    - "*.ipv6.microsoft.com"
+    # - '*'
+    # - "*.jianguoyun.com"  # 坚果云
+    # - "*.xiaomi.com"
+    # - "*.lan"
+    # - "*.ntp.org.cn"
+    # - "*.openwrt.pool.ntp.org"
+    # - "*.time.edu.cn"
+    # - "*.music.163.com"
+    # - "*.126.net"
+    # - "*.kuwo.cn"
+    # - "*.music.migu.cn"
+    # # - "*.msftconnecttest.com"
+    # # - "*.msftncsi.com"
+    # - "*.ipv6.microsoft.com"
 
-    - dav.jianguoyun.com  # 坚果云
-    - weatherapi.market.xiaomi.com  # 小米天气
-    - localhost.ptlogin2.qq.com
-    - time.windows.com
-    - time.nist.gov
-    - time.apple.com
-    - time.asia.apple.com
-    - time1.cloud.tencent.com
-    - time.ustc.edu.cn
-    - pool.ntp.org
-    - ntp.ubuntu.com
-    - ntp.aliyun.com
-    - ntp1.aliyun.com
-    - ntp2.aliyun.com
-    - ntp3.aliyun.com
-    - ntp4.aliyun.com
-    - ntp5.aliyun.com
-    - ntp6.aliyun.com
-    - ntp7.aliyun.com
-    - time1.aliyun.com
-    - time2.aliyun.com
-    - time3.aliyun.com
-    - time4.aliyun.com
-    - time5.aliyun.com
-    - time6.aliyun.com
-    - time7.aliyun.com
-    - time1.apple.com
-    - time2.apple.com
-    - time3.apple.com
-    - time4.apple.com
-    - time5.apple.com
-    - time6.apple.com
-    - time7.apple.com
-    - time1.google.com
-    - time2.google.com
-    - time3.google.com
-    - time4.google.com
-    - music.163.com
-    - musicapi.taihe.com
-    - music.taihe.com
-    - songsearch.kugou.com
-    - trackercdn.kugou.com
-    - jooxtt.sanook.com
-    - api.joox.com
-    - joox.com
-    - y.qq.com
-    - streamoc.music.tc.qq.com
-    - mobileoc.music.tc.qq.com
-    - isure.stream.qqmusic.qq.com
-    - dl.stream.qqmusic.qq.com
-    - aqqmusic.tc.qq.com
-    - amobile.music.tc.qq.com
-    - music.migu.cn
-    - speedtest.cros.wr.pvp.net
+    # - dav.jianguoyun.com  # 坚果云
+    # - weatherapi.market.xiaomi.com  # 小米天气
+    # - localhost.ptlogin2.qq.com
+    # - time.windows.com
+    # - time.nist.gov
+    # - time.apple.com
+    # - time.asia.apple.com
+    # - time1.cloud.tencent.com
+    # - time.ustc.edu.cn
+    # - pool.ntp.org
+    # - ntp.ubuntu.com
+    # - ntp.aliyun.com
+    # - ntp1.aliyun.com
+    # - ntp2.aliyun.com
+    # - ntp3.aliyun.com
+    # - ntp4.aliyun.com
+    # - ntp5.aliyun.com
+    # - ntp6.aliyun.com
+    # - ntp7.aliyun.com
+    # - time1.aliyun.com
+    # - time2.aliyun.com
+    # - time3.aliyun.com
+    # - time4.aliyun.com
+    # - time5.aliyun.com
+    # - time6.aliyun.com
+    # - time7.aliyun.com
+    # - time1.apple.com
+    # - time2.apple.com
+    # - time3.apple.com
+    # - time4.apple.com
+    # - time5.apple.com
+    # - time6.apple.com
+    # - time7.apple.com
+    # - time1.google.com
+    # - time2.google.com
+    # - time3.google.com
+    # - time4.google.com
+    # - music.163.com
+    # - musicapi.taihe.com
+    # - music.taihe.com
+    # - songsearch.kugou.com
+    # - trackercdn.kugou.com
+    # - jooxtt.sanook.com
+    # - api.joox.com
+    # - joox.com
+    # - y.qq.com
+    # - streamoc.music.tc.qq.com
+    # - mobileoc.music.tc.qq.com
+    # - isure.stream.qqmusic.qq.com
+    # - dl.stream.qqmusic.qq.com
+    # - aqqmusic.tc.qq.com
+    # - amobile.music.tc.qq.com
+    # - music.migu.cn
+    # - speedtest.cros.wr.pvp.net
     
     
   default-nameserver:  # 用于解析nameserver中的域名dns服务器，理论上如果nameserver中的dns服务器都是ip类的，这里也可以不填
     - 114.114.114.114 # 运营商
     - 223.6.6.6  # a
 
+
+  proxy-server-nameserver:  # # 用于解析代理节点的域名
+    # - https://dns.alidns.com/dns-query  # a
+    # - https://doh.pub/dns-query  # t
+    - 223.6.6.6  # a
+    - 119.29.29.29  # t
+
+
+  direct-nameserver:  # 直连 域名的解析
+    - 114.114.114.114 # 运营商
+    - 223.6.6.6  # a
+
     
-  nameserver:  # DNS 主要域名配置 这部分为主要 DNS 配置，影响所有直连，确保使用对大陆解析精准的 DNS（在这个配置中，只用来解析没匹配到nameserver-policy的规则，几乎都是访问外网，因此使用google，cf和101的doh）
+  nameserver:  # DNS 主要域名配置 这部分为主要 DNS 配置，影响所有直连，确保使用对大陆解析精准的 DNS（在这个配置中，只用来解析没匹配到nameserver-policy的规则，几乎都是访问外网，因此使用google，cf和101的doh）（用来解析没有匹配到任何「域名规则」的域名，通常是国外域名，建议使用国外 DoH 防止污染）
     - https://dns.cloudflare.com/dns-query  # cf
     - https://dns.adguard-dns.com/dns-query  # adguard
     # - https://dns.quad9.net/dns-query  # ibm
     # - https://dns.google/dns-query  # google
 
 
-  proxy-server-nameserver:  # # 用于解析代理节点的域名
-    - https://dns.alidns.com/dns-query  # a
-    - https://doh.pub/dns-query  # t
-
-    
-  nameserver-policy:
-    "geosite:cn,apple-cn,category-games@cn,private":
-      - 114.114.114.114 # 运营商
-      - 223.6.6.6  # a
-    "geoip:cn":
-      - 114.114.114.114 # 运营商
-      - 223.6.6.6  # a
+  # nameserver-policy:
+  #   "geosite:cn,apple-cn,category-games@cn,private":
+  #     - 114.114.114.114 # 运营商
+  #     - 223.6.6.6  # a
+  #   "geoip:cn":
+  #     - 114.114.114.114 # 运营商
+  #     - 223.6.6.6  # a
