@@ -63,6 +63,7 @@ dns:
   fake-ip-filter:  # fakeip 过滤，以下地址不会下发 fakeip 映射用于连接
     - 'geosite:connectivity-check'
     - 'geosite:private'
+    - weatherapi.market.xiaomi.com  # 小米天气
     
     # - "+.+localdomain"
     # - "xbox.*.*.microsoft.com"
@@ -92,7 +93,6 @@ dns:
     # - "*.ipv6.microsoft.com"
 
     # - dav.jianguoyun.com  # 坚果云
-    # - weatherapi.market.xiaomi.com  # 小米天气
     # - localhost.ptlogin2.qq.com
     # - time.windows.com
     # - time.nist.gov
