@@ -63,8 +63,6 @@ dns:
     - 'geosite:connectivity-check'
     - 'geosite:private'
     - 'geosite:fakeip-filter'
-
-    # - 'rule-set:fakeip-filter'
     
     - weatherapi.market.xiaomi.com  # 小米天气
     
