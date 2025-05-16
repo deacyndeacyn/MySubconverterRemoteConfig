@@ -4,14 +4,14 @@ bind-address: "*"  # 绑定地址，仅允许其他设备通过这个地址访�
 mode: rule
 log-level: info
 ipv6: true  # ipv6 支持
-find-process-mode: strict  # 控制是否让 Clash 去匹配进程 always 开启，强制匹配所有进程 strict 默认，由 Clash 判断是否开启 off 不匹配进程，推荐在路由器上使用此模式
+find-process-mode: strict  # 控制是否让Clash去匹配进程  always开启，强制匹配所有进程  strict默认，由Clash判断是否开启  off不匹配进程，推荐在路由器上使用此模式
 geo-auto-update: true  # 自动更新 GEO
 geo-update-interval: 24  # 更新间隔，单位为小时
 profile:
   store-selected: true
   store-fake-ip: true
 unified-delay: false  # 开启统一延迟时，会计算 RTT，以消除连接握手等带来的不同类型节点的延迟差异，（不使用统一延迟检测，有些节点前戏太慢了）
-tcp-concurrent: true  # TCP并发 同时对所有ip进行连接，返回延迟最低的地址
+tcp-concurrent: true  # TCP并发 如果解析出多个ip，同时对所有ip进行连接，返回延迟最低的地址
 keep-alive-interval: 15  # 缓解移动设备耗电问题 TCP Keep Alive 包的间隔，单位为秒
 keep-alive-idle: 15  # TCP Keep Alive 的最大空闲时间
 global-client-fingerprint: random  # 全局客户端指纹 随机指纹（如果ins之类的被封了，就把这个改成固定的chrome进行尝试）
@@ -147,30 +147,30 @@ dns:
     # - speedtest.cros.wr.pvp.net
     
     
-  default-nameserver:  # 用于解析nameserver中的域名dns服务器，理论上如果nameserver中的dns服务器都是ip类的，这里也可以不填
+  default-nameserver:  # 用于解析nameserver中的域名dns服务器 （理论上如果nameserver中的dns服务器都是ip类的，这里也可以不填）
     - 114.114.114.114 # 运营商
     - 223.6.6.6  # a
 
 
   proxy-server-nameserver:  # # 用于解析代理节点的域名
-    # - https://dns.alidns.com/dns-query  # a
-    # - https://doh.pub/dns-query  # t
     - 223.6.6.6  # a
     - 119.29.29.29  # t
-
-
-  direct-nameserver:  # 直连 域名的解析
-    - 114.114.114.114 # 运营商
-    - 223.6.6.6  # a
-
+    # - https://dns.alidns.com/dns-query  # a
+    # - https://doh.pub/dns-query  # t
     
+  
   nameserver:  # DNS 主要域名配置 这部分为主要 DNS 配置，影响所有直连，确保使用对大陆解析精准的 DNS（在这个配置中，只用来解析没匹配到nameserver-policy的规则，几乎都是访问外网，因此使用google，cf和101的doh）（用来解析没有匹配到任何「域名规则」的域名，通常是国外域名，建议使用国外 DoH 防止污染）
     - https://dns.cloudflare.com/dns-query  # cf
     - https://dns.adguard-dns.com/dns-query  # adguard
-    # - https://dns.quad9.net/dns-query  # ibm
     # - https://dns.google/dns-query  # google
+    # - https://dns.quad9.net/dns-query  # ibm
+    
 
+  direct-nameserver:  # 直连 域名的解析
+      - 114.114.114.114 # 运营商
+      - 223.6.6.6  # a
 
+  
   # nameserver-policy:
   #   "geosite:cn,apple-cn,category-games@cn,private":
   #     - 114.114.114.114 # 运营商
