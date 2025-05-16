@@ -53,9 +53,9 @@ geox-url:
 dns:
   cache-algorithm: arc
   enable: true
-  listen: 0.0.0.0:1053
+  listen: 0.0.0.0:53
   ipv6: true
-  # respect-rules: true
+  # respect-rules: true  # 配置后面的nameserver、fallback和nameserver-policy向dns服务器的连接过程是否遵守遵守rules规则
   enhanced-mode: fake-ip  # fake-ip/redir-host
 
   
