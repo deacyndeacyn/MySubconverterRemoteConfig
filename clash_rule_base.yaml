@@ -13,12 +13,13 @@ keep-alive-interval: 15  # 缓解移动设备耗电问题 TCP Keep Alive 包的�
 keep-alive-idle: 15  # TCP Keep Alive 的最大空闲时间
 global-client-fingerprint: random  # 全局客户端指纹 随机指纹（如果ins之类的被封了，就把这个改成固定的chrome进行尝试）
 profile:
-  store-selected: true
-  store-fake-ip: true
+  store-selected: false  # 存储 select 选择记录
+  store-fake-ip: true  # 持久化 fake-ip
 
 
 sniffer:  # 域名嗅探  域名嗅探的作用是在网络流量中识别出实际访问的域名，即便某些情况下初始的流量信息中可能只有 IP 地址。通过嗅探到域名，Clash 就能依据域名进行更精准的规则匹配和路由决策。
   enable: true
+  override-destination: false  # 是否使用嗅探结果作为实际访问，默认 true,全局配置，优先级低于 sniffer.sniff 实际配置
   sniff:
     HTTP:
       ports: [80, 8080-8880]
@@ -32,15 +33,13 @@ sniffer:  # 域名嗅探  域名嗅探的作用是在网络流量中识别出实
     - "dlg.io.mi.com"
 
 
-tun:  # Tunnel配置
+tun:  # Tun(nel)配置
   enable: true
   stack: system
-  auto-route: true
-  auto-detect-interface: true
   dns-hijack:
     - any:53
     - tcp://any:53
-  mtu: 9000
+  auto-redirect: true  # 自动配置 iptables 以重定向 TCP 连接。仅支持 Linux。带有 auto-redirect 的 auto-route 现在可以在路由器上按预期工作，无需干预。
 
 
 geodata-mode: true
@@ -54,7 +53,7 @@ dns:
   enable: true
   listen: 0.0.0.0:53
   ipv6: true
-  # respect-rules: true  # 配置后面的nameserver、fallback和nameserver-policy向dns服务器的连接过程是否遵守遵守rules规则
+  respect-rules: false  # 配置后面的nameserver、fallback和nameserver-policy向dns服务器的连接过程是否遵守遵守rules规则
   enhanced-mode: fake-ip  # fake-ip/redir-host
 
   
@@ -62,90 +61,88 @@ dns:
   fake-ip-filter:  # fakeip 过滤，以下地址不会下发 fakeip 映射用于连接
     - 'geosite:connectivity-check'
     - 'geosite:private'
-    - 'geosite:fakeip-filter'
     
+    - "+.+localdomain"
+    - "xbox.*.*.microsoft.com"
+    - "stun.*.*.*"
+    - "stun.*.*"
+
+    - '+.lan'
+    - '+.local'
+
+    - "*.*.xboxlive.com"
+    - "*.*.stun.playstation.net"
+    - "*.*.*.srv.nintendo.net"
+
+    - '*'
+    - "*.jianguoyun.com"  # 坚果云
+    - "*.xiaomi.com"
+    - "*.lan"
+    - "*.ntp.org.cn"
+    - "*.openwrt.pool.ntp.org"
+    - "*.time.edu.cn"
+    - "*.music.163.com"
+    - "*.126.net"
+    - "*.kuwo.cn"
+    - "*.music.migu.cn"
+    - "*.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - "*.ipv6.microsoft.com"
+
     - weatherapi.market.xiaomi.com  # 小米天气
-    
-    # - "+.+localdomain"
-    # - "xbox.*.*.microsoft.com"
-    # - "stun.*.*.*"
-    # - "stun.*.*"
-
-    # - '+.lan'
-    # - '+.local'
-
-    # - "*.*.xboxlive.com"
-    # - "*.*.stun.playstation.net"
-    # - "*.*.*.srv.nintendo.net"
-
-    # - '*'
-    # - "*.jianguoyun.com"  # 坚果云
-    # - "*.xiaomi.com"
-    # - "*.lan"
-    # - "*.ntp.org.cn"
-    # - "*.openwrt.pool.ntp.org"
-    # - "*.time.edu.cn"
-    # - "*.music.163.com"
-    # - "*.126.net"
-    # - "*.kuwo.cn"
-    # - "*.music.migu.cn"
-    # - "*.msftconnecttest.com"
-    # - "*.msftncsi.com"
-    # - "*.ipv6.microsoft.com"
-
-    # - dav.jianguoyun.com  # 坚果云
-    # - localhost.ptlogin2.qq.com
-    # - time.windows.com
-    # - time.nist.gov
-    # - time.apple.com
-    # - time.asia.apple.com
-    # - time1.cloud.tencent.com
-    # - time.ustc.edu.cn
-    # - pool.ntp.org
-    # - ntp.ubuntu.com
-    # - ntp.aliyun.com
-    # - ntp1.aliyun.com
-    # - ntp2.aliyun.com
-    # - ntp3.aliyun.com
-    # - ntp4.aliyun.com
-    # - ntp5.aliyun.com
-    # - ntp6.aliyun.com
-    # - ntp7.aliyun.com
-    # - time1.aliyun.com
-    # - time2.aliyun.com
-    # - time3.aliyun.com
-    # - time4.aliyun.com
-    # - time5.aliyun.com
-    # - time6.aliyun.com
-    # - time7.aliyun.com
-    # - time1.apple.com
-    # - time2.apple.com
-    # - time3.apple.com
-    # - time4.apple.com
-    # - time5.apple.com
-    # - time6.apple.com
-    # - time7.apple.com
-    # - time1.google.com
-    # - time2.google.com
-    # - time3.google.com
-    # - time4.google.com
-    # - music.163.com
-    # - musicapi.taihe.com
-    # - music.taihe.com
-    # - songsearch.kugou.com
-    # - trackercdn.kugou.com
-    # - jooxtt.sanook.com
-    # - api.joox.com
-    # - joox.com
-    # - y.qq.com
-    # - streamoc.music.tc.qq.com
-    # - mobileoc.music.tc.qq.com
-    # - isure.stream.qqmusic.qq.com
-    # - dl.stream.qqmusic.qq.com
-    # - aqqmusic.tc.qq.com
-    # - amobile.music.tc.qq.com
-    # - music.migu.cn
-    # - speedtest.cros.wr.pvp.net
+    - dav.jianguoyun.com  # 坚果云
+    - localhost.ptlogin2.qq.com
+    - time.windows.com
+    - time.nist.gov
+    - time.apple.com
+    - time.asia.apple.com
+    - time1.cloud.tencent.com
+    - time.ustc.edu.cn
+    - poojl.ntp.org
+    - ntp.ubuntu.com
+    - ntp.aliyun.com
+    - ntp1.aliyun.com
+    - ntp2.aliyun.com
+    - ntp3.aliyun.com
+    - ntp4.aliyun.com
+    - ntp5.aliyun.com
+    - ntp6.aliyun.com
+    - ntp7.aliyun.com
+    - time1.aliyun.com
+    - time2.aliyun.com
+    - time3.aliyun.com
+    - time4.aliyun.com
+    - time5.aliyun.com
+    - time6.aliyun.com
+    - time7.aliyun.com
+    - time1.apple.com
+    - time2.apple.com
+    - time3.apple.com
+    - time4.apple.com
+    - time5.apple.com
+    - time6.apple.com
+    - time7.apple.com
+    - time1.google.com
+    - time2.google.com
+    - time3.google.com
+    - time4.google.com
+    - music.163.com
+    - musicapi.taihe.com
+    - music.taihe.com
+    - songsearch.kugou.com
+    - trackercdn.kugou.com
+    - jooxtt.sanook.com
+    - api.joox.com
+    - joox.com
+    - y.qq.com
+    - streamoc.music.tc.qq.com
+    - mobileoc.music.tc.qq.com
+    - isure.stream.qqmusic.qq.com
+    - dl.stream.qqmusic.qq.com
+    - aqqmusic.tc.qq.com
+    - amobile.music.tc.qq.com
+    - music.migu.cn
+    - speedtest.cros.wr.pvp.net
     
     
   default-nameserver:  # 用于解析nameserver中的域名dns服务器
