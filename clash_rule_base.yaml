@@ -62,7 +62,6 @@ dns:
   fake-ip-filter:  # fakeip 过滤，以下地址不会下发 fakeip 映射用于连接
     - 'geosite:connectivity-check'
     - 'geosite:private'
-    - 'rule-set:fakeip-filter'
 
     - '+.+localdomain'
     - 'xbox.*.*.microsoft.com'
