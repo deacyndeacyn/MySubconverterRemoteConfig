@@ -5,8 +5,6 @@ mode: rule  # 模式
 log-level: info  # 日志等级
 ipv6: true  # ipv6 支持
 find-process-mode: strict  # 控制是否让Clash去匹配进程  always开启，强制匹配所有进程  strict默认，由Clash判断是否开启  off不匹配进程，推荐在路由器上使用此模式
-geo-auto-update: true  # 自动更新 GEO
-geo-update-interval: 24  # 更新间隔，单位为小时
 unified-delay: false  # 开启统一延迟时，会计算 RTT，以消除连接握手等带来的不同类型节点的延迟差异，（不使用统一延迟检测，有些节点前戏太慢了）
 tcp-concurrent: true  # TCP并发 如果解析出多个ip，同时对所有ip进行连接，返回延迟最低的地址
 keep-alive-interval: 15  # 缓解移动设备耗电问题 TCP Keep Alive 包的间隔，单位为秒
