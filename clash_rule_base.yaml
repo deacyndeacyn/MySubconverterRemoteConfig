@@ -1,6 +1,6 @@
 mixed-port: 7890  # socks5/http 端口
 allow-lan: true  # 允许局域网连接
-bind-address: "*"  # 绑定地址，仅允许其他设备通过这个地址访问
+bind-address: '*'  # 绑定地址，仅允许其他设备通过这个地址访问
 mode: rule  # 模式
 log-level: info  # 日志等级
 ipv6: true  # ipv6 支持
@@ -27,8 +27,8 @@ sniffer:  # 域名嗅探  域名嗅探的作用是在网络流量中识别出实
     QUIC:
       ports: [443, 8443]
   skip-domain:  # 跳过嗅探的域名列表，使用域名通配
-    - "Mijia Cloud"
-    - "dlg.io.mi.com"
+    - 'Mijia Cloud'
+    - 'dlg.io.mi.com'
 
 
 tun:  # Tun(nel)配置
@@ -44,9 +44,9 @@ geo-auto-update: false # 是否自动更新 geodata
 geo-update-interval: 24 # 更新间隔，单位：小时
 geodata-mode: true
 geox-url:
-  geoip: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
-  geosite: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
-  mmdb: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb"
+  geoip: 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat'
+  geosite: 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat'
+  mmdb: 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb'
 
 
 dns:
@@ -63,6 +63,88 @@ dns:
     - 'geosite:connectivity-check'
     - 'geosite:private'
     - 'rule-set:fakeip-filter'
+
+    - '+.+localdomain'
+    - 'xbox.*.*.microsoft.com'
+    - 'stun.*.*.*'
+    - 'stun.*.*'
+    
+    - '+.lan'
+    - '+.local'
+    
+    - '*.*.xboxlive.com'
+    - '*.*.stun.playstation.net'
+    - '*.*.*.srv.nintendo.net'
+    
+    - '*'
+    - '*.jianguoyun.com'  # 坚果云
+    - '*.xiaomi.com'
+    - '*.lan'
+    - '*.ntp.org.cn'
+    - '*.openwrt.pool.ntp.org'
+    - '*.time.edu.cn'
+    - '*.music.163.com'
+    - '*.126.net'
+    - '*.kuwo.cn'
+    - '*.music.migu.cn'
+    - '*.msftconnecttest.com'
+    - '*.msftncsi.com'
+    - '*.ipv6.microsoft.com'
+    
+    - 'weatherapi.market.xiaomi.com'  # 小米天气
+    - 'dav.jianguoyun.com'  # 坚果云
+    - 'localhost.ptlogin2.qq.com'
+    - 'time.windows.com'
+    - 'time.nist.gov'
+    - 'time.apple.com'
+    - 'time.asia.apple.com'
+    - 'time1.cloud.tencent.com'
+    - 'time.ustc.edu.cn'
+    - 'poojl.ntp.org'
+    - 'ntp.ubuntu.com'
+    - 'ntp.aliyun.com'
+    - 'ntp1.aliyun.com'
+    - 'ntp2.aliyun.com'
+    - 'ntp3.aliyun.com'
+    - 'ntp4.aliyun.com'
+    - 'ntp5.aliyun.com'
+    - 'ntp6.aliyun.com'
+    - 'ntp7.aliyun.com'
+    - 'time1.aliyun.com'
+    - 'time2.aliyun.com'
+    - 'time3.aliyun.com'
+    - 'time4.aliyun.com'
+    - 'time5.aliyun.com'
+    - 'time6.aliyun.com'
+    - 'time7.aliyun.com'
+    - 'time1.apple.com'
+    - 'time2.apple.com'
+    - 'time3.apple.com'
+    - 'time4.apple.com'
+    - 'time5.apple.com'
+    - 'time6.apple.com'
+    - 'time7.apple.com'
+    - 'time1.google.com'
+    - 'time2.google.com'
+    - 'time3.google.com'
+    - 'time4.google.com'
+    - 'music.163.com'
+    - 'musicapi.taihe.com'
+    - 'music.taihe.com'
+    - 'songsearch.kugou.com'
+    - 'trackercdn.kugou.com'
+    - 'jooxtt.sanook.com'
+    - 'api.joox.com'
+    - 'joox.com'
+    - 'y.qq.com'
+    - 'streamoc.music.tc.qq.com'
+    - 'mobileoc.music.tc.qq.com'
+    - 'isure.stream.qqmusic.qq.com'
+    - 'dl.stream.qqmusic.qq.com'
+    - 'aqqmusic.tc.qq.com'
+    - 'amobile.music.tc.qq.com'
+    - 'music.migu.cn'
+    - 'speedtest.cros.wr.pvp.net'
     
     
   default-nameserver:  # 用于解析nameserver中的域名dns服务器
