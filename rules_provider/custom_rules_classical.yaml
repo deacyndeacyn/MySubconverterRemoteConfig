@@ -1,3 +1,8 @@
 payload:
 # 小黑盒
 - DOMAIN-KEYWORD,heybox
+
+# 倒数日Clover四叶新媒体
+-DOMAIN-KEYWORD,icity
+-DOMAIN-KEYWORD,idays
+-DOMAIN-KEYWORD,idaily
