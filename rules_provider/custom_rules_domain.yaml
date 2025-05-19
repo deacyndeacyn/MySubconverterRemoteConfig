@@ -1,0 +1,38 @@
+payload:
+# 白描app
+- '+.baimiaoapp.com'
+
+# ghproxy github国内加速
+- '+.gh-proxy.com'
+
+# infinity标签页
+- '+.infinitynewtab.com'
+
+# 翻转校园
+- '+.schoopia.com'
+
+# 小米 AI扫描
+- '+.xiaomiscan.net'
+
+# 国聘
+- '+.iguopin.com'
+
+# 上海掌之淘信息技术有限公司
+- '+.zztfly.com'
+
+# 雷神加速器
+- '+.xxghh.biz'
+- '+.nn.com'
+
+# 51job
+- '+.51jobapp.com'
+
+# AVL移动安全·安天
+- '+.avlyun.com'
+
+# 阿里云cs？？（黑人问号）
+- '+.aliyuncs.com'
+
+# 得物
+- '+.dewu.com'
+
