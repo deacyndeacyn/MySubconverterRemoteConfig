@@ -36,3 +36,19 @@ payload:
 # 得物
 - '+.dewu.com'
 
+# LeanCloud
+- '+.lncldapi.com'
+
+# 雨见浏览器
+- '+.yjllq.com'
+- '+.yujianpay.com'
+- '+.yjbrowser.com'
+# 火狐(服务)
+- '+.mozilla.net'
+- '+.firefox.com'
+
+# 云信指南针数据上报地址
+- '+.yunxinfw.com'
+
+# 安居客
+- '+.ajkimg.com'
