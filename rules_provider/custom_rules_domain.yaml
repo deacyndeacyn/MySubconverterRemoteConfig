@@ -55,3 +55,6 @@ payload:
 
 # pcl2 picgo图床
 - '+.picgo.net'
+
+# 抖音 巨量引擎
+- '+.oceanengine.com'
