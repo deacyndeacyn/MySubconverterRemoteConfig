@@ -52,3 +52,6 @@ payload:
 
 # 安居客
 - '+.ajkimg.com'
+
+# pcl picgo图床
+- '+.picgo.net'
