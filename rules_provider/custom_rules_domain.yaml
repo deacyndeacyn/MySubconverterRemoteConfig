@@ -58,3 +58,6 @@ payload:
 
 # 抖音 巨量引擎
 - '+.oceanengine.com'
+# 王者荣耀云游戏
+- '+.snssdk.com'
+- '+.iaoligame.com'
