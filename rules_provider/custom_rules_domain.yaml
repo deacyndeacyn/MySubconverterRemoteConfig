@@ -61,3 +61,6 @@ payload:
 # 王者荣耀云游戏
 - '+.snssdk.com'
 - '+.iaoligame.com'
+
+# 今日热榜
+- '+.tophub.today'
