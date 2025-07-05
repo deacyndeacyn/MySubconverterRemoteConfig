@@ -1,60 +1,41 @@
-mixed-port: 7890  # socks5/http 端口
+mixed-port: 778  # socks5/http 端口
+
 allow-lan: true  # 允许局域网连接
 bind-address: '*'  # 绑定地址，仅允许其他设备通过这个地址访问
-mode: rule  # 模式
-log-level: info  # 日志等级
-ipv6: true  # ipv6 支持
+
 find-process-mode: strict  # 控制是否让Clash去匹配进程  always开启，强制匹配所有进程  strict默认，由Clash判断是否开启  off不匹配进程，推荐在路由器上使用此模式
+
+mode: rule  # 模式
+
+geox-url:  # 自定义 geodata url
+  geoip: 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat'
+  geosite: 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat'
+  mmdb: 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb'
+  
+geo-auto-update: false  # 是否自动更新 geodata
+geo-update-interval: 24  # 更新间隔，单位：小时
+geodata-mode: true
+
+log-level: info  # 日志等级
+
+ipv6: true  # ipv6 支持
+
+global-client-fingerprint: chrome  # 全局 TLS 指纹，优先低于 proxy 内的 client-fingerprint。可选： "chrome","firefox","safari","ios","random","none" options.
+
+profile:
+  store-selected: false  # 存储 select 选择记录。储存 API 对策略组的选择，以供下次启动时使用
+  store-fake-ip: true  # 持久化 fake-ip。储存 fakeip 映射表，域名再次发生连接时，使用原有映射地址
+
 unified-delay: false  # 开启统一延迟时，会计算 RTT，以消除连接握手等带来的不同类型节点的延迟差异，（不使用统一延迟检测，有些节点前戏太慢了）
 tcp-concurrent: true  # TCP并发 如果解析出多个ip，同时对所有ip进行连接，返回延迟最低的地址
 keep-alive-interval: 15  # 缓解移动设备耗电问题 TCP Keep Alive 包的间隔，单位为秒
 keep-alive-idle: 15  # TCP Keep Alive 的最大空闲时间
-global-client-fingerprint: random  # 全局客户端指纹 随机指纹（如果ins之类的被封了，就把这个改成固定的chrome进行尝试）
-profile:
-  store-selected: false  # 存储 select 选择记录
-  store-fake-ip: true  # 持久化 fake-ip
-
-
-sniffer:  # 域名嗅探  域名嗅探的作用是在网络流量中识别出实际访问的域名，即便某些情况下初始的流量信息中可能只有 IP 地址。通过嗅探到域名，Clash 就能依据域名进行更精准的规则匹配和路由决策。
-  enable: true
-  override-destination: false  # 是否使用嗅探结果作为实际访问，默认 true,全局配置，优先级低于 sniffer.sniff 实际配置
-  sniff:
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true  # 是否使用嗅探结果作为实际访问，默认为 true
-    TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
-  skip-domain:  # 跳过嗅探的域名列表，使用域名通配
-    - 'Mijia Cloud'
-    - 'dlg.io.mi.com'
-
-
-tun:  # Tun(nel)配置
-  enable: true
-  stack: system
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-  auto-redirect: true  # 自动配置 iptables 以重定向 TCP 连接。仅支持 Linux。带有 auto-redirect 的 auto-route 现在可以在路由器上按预期工作，无需干预。
-
-
-geo-auto-update: false # 是否自动更新 geodata
-geo-update-interval: 24 # 更新间隔，单位：小时
-geodata-mode: true
-geox-url:
-  geoip: 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat'
-  geosite: 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat'
-  mmdb: 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb'
-
 
 dns:
   cache-algorithm: arc
   enable: true
   listen: 0.0.0.0:53
   ipv6: true
-  respect-rules: false  # 配置后面的nameserver、fallback和nameserver-policy向dns服务器的连接过程是否遵守遵守rules规则
   enhanced-mode: fake-ip  # fake-ip/redir-host
 
   
