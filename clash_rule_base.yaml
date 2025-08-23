@@ -1,7 +1,7 @@
 mixed-port: 778  # socks5/http 端口
 
-allow-lan: true  # 允许局域网连接
-bind-address: '*'  # 绑定地址，仅允许其他设备通过这个地址访问
+# allow-lan: true  # 允许局域网连接
+# bind-address: '*'  # 绑定地址，仅允许其他设备通过这个地址访问
 
 find-process-mode: strict  # 控制是否让Clash去匹配进程  always开启，强制匹配所有进程  strict默认，由Clash判断是否开启  off不匹配进程，推荐在路由器上使用此模式
 
