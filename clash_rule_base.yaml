@@ -1,7 +1,7 @@
-mixed-port: 778  # socks5/http 端口
+mixed-port: 7890  # socks5/http 端口
 
-# allow-lan: true  # 允许局域网连接
-# bind-address: '*'  # 绑定地址，仅允许其他设备通过这个地址访问
+allow-lan: false  # 允许局域网连接
+bind-address: '*'  # 绑定地址，仅允许其他设备通过这个地址访问
 
 find-process-mode: strict  # 控制是否让Clash去匹配进程  always开启，强制匹配所有进程  strict默认，由Clash判断是否开启  off不匹配进程，推荐在路由器上使用此模式
 
@@ -34,12 +34,13 @@ keep-alive-idle: 15  # TCP Keep Alive 的最大空闲时间
 dns:
   cache-algorithm: arc
   enable: true
-  listen: 0.0.0.0:53
-  ipv6: true
+  # listen: 0.0.0.0:53
+  # ipv6: true
   enhanced-mode: fake-ip  # fake-ip/redir-host
+  respect-rules: true  # dns 连接遵守路由规则，需配置 proxy-server-nameserver
 
   
-  fake-ip-range: 28.0.0.1/16
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter:  # fakeip 过滤，以下地址不会下发 fakeip 映射用于连接
     - 'geosite:connectivity-check'
     - 'geosite:private'
@@ -132,6 +133,27 @@ dns:
     - 223.6.6.6   # a
 
 
+  nameserver-policy:
+    "geosite:cn,apple-cn,category-games@cn,private":
+      - 114.114.114.114  # 114
+      - 223.6.6.6  # a
+    "geoip:cn":
+      - 114.114.114.114  # 114
+      - 223.6.6.6  # a
+
+
+  nameserver:
+    - https://dns.cloudflare.com/dns-query  # cf
+    - https://dns.google/dns-query  # google
+    # - https://dns.adguard-dns.com/dns-query  # adguard
+    # - https://dns.quad9.net/dns-query  # ibm
+
+
+  direct-nameserver:  # 直连 域名的解析
+    - 114.114.114.114  # 114
+    - 223.6.6.6  # a
+
+
   proxy-server-nameserver:  # 用于解析代理节点的域名
     - 223.6.6.6  # a
     - 119.29.29.29  # t
@@ -139,24 +161,3 @@ dns:
     - https://dns.google/dns-query  # google
     # - https://dns.alidns.com/dns-query  # a
     # - https://doh.pub/dns-query  # t
-    
-  
-  nameserver:  # DNS 主要域名配置 这部分为主要 DNS 配置，影响所有直连，确保使用对大陆解析精准的 DNS（在这个配置中，只用来解析没匹配到nameserver-policy的规则，几乎都是访问外网，因此使用google，cf和101的doh）（用来解析没有匹配到任何「域名规则」的域名，通常是国外域名，建议使用国外 DoH 防止污染）
-    - https://dns.cloudflare.com/dns-query  # cf
-    - https://dns.google/dns-query  # google
-    # - https://dns.adguard-dns.com/dns-query  # adguard
-    # - https://dns.quad9.net/dns-query  # ibm
-    
-
-  direct-nameserver:  # 直连 域名的解析
-    - 114.114.114.114  # 114
-    - 223.6.6.6  # a
-
-  
-  # nameserver-policy:
-  #   "geosite:cn,apple-cn,category-games@cn,private":
-  #     - 114.114.114.114  # 114
-  #     - 223.6.6.6  # a
-  #   "geoip:cn":
-  #     - 114.114.114.114  # 114
-  #     - 223.6.6.6  # a
