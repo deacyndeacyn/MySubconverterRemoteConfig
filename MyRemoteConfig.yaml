@@ -19,7 +19,6 @@ ruleset=🎯 DIRECT,clash-classic:https://raw.githubusercontent.com/xiaozhidepik
 
 ;ruleset=🎯 DIRECT,[]GEOSITE,geolocation-!cn
 ruleset=🎯 DIRECT,[]GEOSITE,google@cn
-ruleset=🎯 DIRECT,[]GEOSITE,category-game-platforms-download@cn
 ruleset=🎯 DIRECT,[]GEOSITE,microsoft@cn
 ruleset=🎯 DIRECT,[]GEOSITE,category-games@cn
 ruleset=🎯 DIRECT,[]GEOSITE,private
