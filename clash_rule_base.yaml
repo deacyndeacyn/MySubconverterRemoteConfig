@@ -125,8 +125,7 @@ dns:
     
     
   default-nameserver:  # 用于解析nameserver中的域名dns服务
-    - https://dns.cloudflare.com/dns-query  # cf
-    - https://dns.google/dns-query  # google
+    - 1.1.1.1  # cf
     - 114.114.114.114  # 114
     - 223.5.5.5  # a
 
