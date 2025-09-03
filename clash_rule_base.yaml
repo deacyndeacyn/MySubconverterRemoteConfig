@@ -1,7 +1,6 @@
 mixed-port: 7890  # socks5/http 端口
 
 allow-lan: false  # 允许局域网连接
-bind-address: '*'  # 绑定地址，仅允许其他设备通过这个地址访问
 
 find-process-mode: strict  # 控制是否让Clash去匹配进程  always开启，强制匹配所有进程  strict默认，由Clash判断是否开启  off不匹配进程，推荐在路由器上使用此模式
 
@@ -18,7 +17,7 @@ geodata-mode: true
 
 log-level: info  # 日志等级
 
-ipv6: true  # ipv6 支持
+ipv6: false  # ipv6 支持
 
 global-client-fingerprint: chrome  # 全局 TLS 指纹，优先低于 proxy 内的 client-fingerprint。可选： "chrome","firefox","safari","ios","random","none" options.
 
@@ -28,18 +27,14 @@ profile:
 
 unified-delay: false  # 开启统一延迟时，会计算 RTT，以消除连接握手等带来的不同类型节点的延迟差异，（不使用统一延迟检测，有些节点前戏太慢了）
 tcp-concurrent: true  # TCP并发 如果解析出多个ip，同时对所有ip进行连接，返回延迟最低的地址
-keep-alive-interval: 15  # 缓解移动设备耗电问题 TCP Keep Alive 包的间隔，单位为秒
-keep-alive-idle: 15  # TCP Keep Alive 的最大空闲时间
 
 dns:
   cache-algorithm: arc
   enable: true
-  # listen: 0.0.0.0:53
-  # ipv6: true
+  listen: 0.0.0.0:8853
+  ipv6: false
   enhanced-mode: fake-ip  # fake-ip/redir-host
-  respect-rules: true  # dns 连接遵守路由规则，需配置 proxy-server-nameserver
 
-  
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:  # fakeip 过滤，以下地址不会下发 fakeip 映射用于连接
     - 'geosite:connectivity-check'
@@ -56,11 +51,12 @@ dns:
     - '*.*.xboxlive.com'
     - '*.*.stun.playstation.net'
     - '*.*.*.srv.nintendo.net'
-    
+
+    - '*.xiami.com'
+    - '*.y.qq.com'
     - '*'
     - '*.jianguoyun.com'  # 坚果云
     - '*.xiaomi.com'
-    - '*.lan'
     - '*.ntp.org.cn'
     - '*.openwrt.pool.ntp.org'
     - '*.time.edu.cn'
@@ -71,9 +67,8 @@ dns:
     - '*.msftconnecttest.com'
     - '*.msftncsi.com'
     - '*.ipv6.microsoft.com'
-    
-    - 'weatherapi.market.xiaomi.com'  # 小米天气
-    - 'dav.jianguoyun.com'  # 坚果云
+
+    - 'pool.ntp.org'
     - 'localhost.ptlogin2.qq.com'
     - 'time.windows.com'
     - 'time.nist.gov'
@@ -114,6 +109,7 @@ dns:
     - 'music.taihe.com'
     - 'songsearch.kugou.com'
     - 'trackercdn.kugou.com'
+    - 'api-jooxtt.sanook.com'
     - 'jooxtt.sanook.com'
     - 'api.joox.com'
     - 'joox.com'
@@ -128,18 +124,20 @@ dns:
     - 'speedtest.cros.wr.pvp.net'
     
     
-  default-nameserver:  # 用于解析nameserver中的域名dns服务器
+  default-nameserver:  # 用于解析nameserver中的域名dns服务
+    - https://dns.cloudflare.com/dns-query  # cf
+    - https://dns.google/dns-query  # google
     - 114.114.114.114  # 114
-    - 223.6.6.6   # a
+    - 223.5.5.5  # a
 
 
   nameserver-policy:
     "geosite:cn,apple-cn,category-games@cn,private":
       - 114.114.114.114  # 114
-      - 223.6.6.6  # a
+      - 223.5.5.5  # a
     "geoip:cn":
       - 114.114.114.114  # 114
-      - 223.6.6.6  # a
+      - 223.5.5.5  # a
 
 
   nameserver:
@@ -151,13 +149,14 @@ dns:
 
   direct-nameserver:  # 直连 域名的解析
     - 114.114.114.114  # 114
-    - 223.6.6.6  # a
+    - 223.5.5.5  # a
 
 
   proxy-server-nameserver:  # 用于解析代理节点的域名
-    - 223.6.6.6  # a
-    - 119.29.29.29  # t
     - https://dns.cloudflare.com/dns-query  # cf
     - https://dns.google/dns-query  # google
+    - 114.114.114.114  # 114
+    - 223.5.5.5  # a
+    # - 119.29.29.29  # t
     # - https://dns.alidns.com/dns-query  # a
     # - https://doh.pub/dns-query  # t
