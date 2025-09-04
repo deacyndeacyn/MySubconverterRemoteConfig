@@ -67,7 +67,8 @@ dns:
     - '*.msftconnecttest.com'
     - '*.msftncsi.com'
     - '*.ipv6.microsoft.com'
-
+    
+    - 'weatherapi.market.xiaomi.com'  # 小米天气
     - 'pool.ntp.org'
     - 'localhost.ptlogin2.qq.com'
     - 'time.windows.com'
