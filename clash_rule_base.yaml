@@ -152,11 +152,11 @@ dns:
     - 223.5.5.5  # a
 
 
-  proxy-server-nameserver:  # 用于解析代理节点的域名
-    - https://dns.cloudflare.com/dns-query  # cf
-    - https://dns.google/dns-query  # google
-    - 114.114.114.114  # 114
-    - 223.5.5.5  # a
-    # - 119.29.29.29  # t
-    # - https://dns.alidns.com/dns-query  # a
-    # - https://doh.pub/dns-query  # t
+  # proxy-server-nameserver:  # 用于解析代理节点的域名
+  #   - https://dns.cloudflare.com/dns-query  # cf
+  #   - https://dns.google/dns-query  # google
+  #   - 114.114.114.114  # 114
+  #   - 223.5.5.5  # a
+  #   # - 119.29.29.29  # t
+  #   # - https://dns.alidns.com/dns-query  # a
+  #   # - https://doh.pub/dns-query  # t
