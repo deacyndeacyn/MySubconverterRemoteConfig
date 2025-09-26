@@ -126,9 +126,8 @@ dns:
     
     
   default-nameserver:  # 用于解析nameserver中的域名dns服务
-    - 1.1.1.1  # cf
     - 114.114.114.114  # 114
-    - 223.5.5.5  # a
+    - 1.1.1.1  # cf
 
 
   nameserver-policy:
@@ -141,10 +140,10 @@ dns:
 
 
   nameserver:
+    - 1.1.1.1  # cf
+    - 8.8.8.8  # google
     - https://dns.cloudflare.com/dns-query  # cf
     - https://dns.google/dns-query  # google
-    # - https://dns.adguard-dns.com/dns-query  # adguard
-    # - https://dns.quad9.net/dns-query  # ibm
 
 
   direct-nameserver:  # 直连 域名的解析
