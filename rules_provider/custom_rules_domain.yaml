@@ -67,3 +67,6 @@ payload:
 
 # win wifi认证
 - '+.msftconnecttest.com'
+
+# v2ex
+- '+.v2ex.com'
