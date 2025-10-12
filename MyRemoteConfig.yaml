@@ -4,28 +4,31 @@ clash_rule_base=https://raw.githubusercontent.com/deacyndeacyn/MySubconverterRem
 
 
 ;-----------------------------------------------------------------------------------------------------------------------------------------------------------------
-ruleset=🛑 REJECT,[]GEOSITE,category-ads-all
-ruleset=🎯 DIRECT,clash-classic:https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/SteamCN/SteamCN_No_Resolve.yaml
+# ruleset=🛑 REJECT,[]GEOSITE,category-ads-all
+# ruleset=🕹️ Steam,clash-classic:https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Steam/Steam_No_Resolve.yaml
+# ruleset=📸 Instagram,[]GEOSITE,instagram
+
 
 ruleset=♻️ load-balance,[]GEOSITE,google
 ruleset=֎ OpenAI,[]GEOSITE,openai
-ruleset=🕹️ Steam,clash-classic:https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Steam/Steam_No_Resolve.yaml
-ruleset=📸 Instagram,[]GEOSITE,instagram
 
 
 ruleset=🎯 DIRECT,clash-domain:https://raw.githubusercontent.com/xiaozhidepikaqiu/MySubconverterRemoteConfig/refs/heads/main/rules_provider/custom_rules_domain.yaml
 ruleset=🎯 DIRECT,clash-classic:https://raw.githubusercontent.com/xiaozhidepikaqiu/MySubconverterRemoteConfig/refs/heads/main/rules_provider/custom_rules_classical.yaml
 
 
-;ruleset=🎯 DIRECT,[]GEOSITE,geolocation-!cn
+ruleset=🎯 DIRECT,[]GEOSITE,steam@cn
+ruleset=🎯 DIRECT,[]GEOSITE,category-game-platforms-download@cn
 ruleset=🎯 DIRECT,[]GEOSITE,google@cn
 ruleset=🎯 DIRECT,[]GEOSITE,microsoft@cn
 ruleset=🎯 DIRECT,[]GEOSITE,category-games@cn
 ruleset=🎯 DIRECT,[]GEOSITE,private
 ruleset=🎯 DIRECT,[]GEOSITE,CN
+ruleset=🕳 我来兜底,[]GEOSITE,!CN
 ruleset=🎯 DIRECT,[]GEOIP,private,no-resolve
 ruleset=🎯 DIRECT,[]GEOIP,CN,no-resolve
-ruleset=🕳 我来兜底,[]FINAL
+ruleset=🕳 我来兜底,[]GEOIP,!CN,no-resolve
+ruleset=🎯 DIRECT,[]FINAL
 ;-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -36,8 +39,10 @@ custom_proxy_group=♻️ load-balance`load-balance`(^(?!.*x(?:[2-9]|[1-9][0-9])
 
 custom_proxy_group=🕳 我来兜底`select`[]♻️ load-balance`[]🚫分隔符🚫`[]🇭🇰 香港 url-test`[]🇹🇼 台湾 url-test`[]🇯🇵 日本 url-test`[]🇸🇬 新加坡 url-test`[]🇺🇸 美国 url-test`[]DIRECT`[]♻️ load-balance`[]🤬 高倍率节点 url-test
 custom_proxy_group=֎ OpenAI`select`[]🇹🇼 台湾 url-test`[]🚫分隔符🚫`[]🇭🇰 香港 url-test`[]🇹🇼 台湾 url-test`[]🇯🇵 日本 url-test`[]🇸🇬 新加坡 url-test`[]🇺🇸 美国 url-test`[]DIRECT`[]♻️ load-balance`[]🤬 高倍率节点 url-test
-custom_proxy_group=🕹️ Steam`select`[]♻️ load-balance`[]🚫分隔符🚫`[]🇭🇰 香港 url-test`[]🇹🇼 台湾 url-test`[]🇯🇵 日本 url-test`[]🇸🇬 新加坡 url-test`[]🇺🇸 美国 url-test`[]DIRECT`[]♻️ load-balance`[]🤬 高倍率节点 url-test
-custom_proxy_group=📸 Instagram`select`[]🇭🇰 香港 url-test`[]🚫分隔符🚫`[]🇭🇰 香港 url-test`[]🇹🇼 台湾 url-test`[]🇯🇵 日本 url-test`[]🇸🇬 新加坡 url-test`[]🇺🇸 美国 url-test`[]DIRECT`[]♻️ load-balance`[]🤬 高倍率节点 url-test
+
+
+# custom_proxy_group=🕹️ Steam`select`[]♻️ load-balance`[]🚫分隔符🚫`[]🇭🇰 香港 url-test`[]🇹🇼 台湾 url-test`[]🇯🇵 日本 url-test`[]🇸🇬 新加坡 url-test`[]🇺🇸 美国 url-test`[]DIRECT`[]♻️ load-balance`[]🤬 高倍率节点 url-test
+# custom_proxy_group=📸 Instagram`select`[]🇭🇰 香港 url-test`[]🚫分隔符🚫`[]🇭🇰 香港 url-test`[]🇹🇼 台湾 url-test`[]🇯🇵 日本 url-test`[]🇸🇬 新加坡 url-test`[]🇺🇸 美国 url-test`[]DIRECT`[]♻️ load-balance`[]🤬 高倍率节点 url-test
 
 
 custom_proxy_group=🤬 高倍率节点 url-test`url-test`(^(?=.*(?:x(?:[2-9]|[1-9][0-9])|([2-9]|[1-9][0-9])倍)).*$)`https://www.google-analytics.com/generate_204`600,5,100
@@ -50,7 +55,7 @@ custom_proxy_group=🇺🇸 美国 url-test`url-test`(^(?!.*x(?:[2-9]|[1-9][0-9]
 
 custom_proxy_group=🎯 DIRECT`select`[]DIRECT`[]♻️ load-balance
 custom_proxy_group=🛑 REJECT`select`[]REJECT`[]DIRECT
-custom_proxy_group=🚫分隔符🚫`select`[]REJECT
+custom_proxy_group=🚫分隔符🚫`select`[]DIRECT
 ;-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
