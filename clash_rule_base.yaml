@@ -24,7 +24,7 @@ unified-delay: false  # 开启统一延迟时，会计算 RTT，以消除连接�
 tcp-concurrent: true  # TCP并发 如果解析出多个ip，同时对所有ip进行连接，返回延迟最低的地址
 
 dns:
-  cache-algorithm: arc
+  # cache-algorithm: arc
   enable: true
   listen: 0.0.0.0:8853
   ipv6: false
