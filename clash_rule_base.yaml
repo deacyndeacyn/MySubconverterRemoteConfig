@@ -16,9 +16,9 @@ log-level: info  # 日志等级
 
 ipv6: false  # ipv6 支持
 
-profile:
-  store-selected: true  # 存储 select 选择记录。储存 API 对策略组的选择，以供下次启动时使用
-  store-fake-ip: true  # 持久化 fake-ip。储存 fakeip 映射表，域名再次发生连接时，使用原有映射地址
+# profile:
+#   store-selected: true  # 存储 select 选择记录。储存 API 对策略组的选择，以供下次启动时使用
+#   store-fake-ip: true  # 持久化 fake-ip。储存 fakeip 映射表，域名再次发生连接时，使用原有映射地址
 
 unified-delay: false  # 开启统一延迟时，会计算 RTT，以消除连接握手等带来的不同类型节点的延迟差异，（不使用统一延迟检测，有些节点前戏太慢了）
 tcp-concurrent: true  # TCP并发 如果解析出多个ip，同时对所有ip进行连接，返回延迟最低的地址
