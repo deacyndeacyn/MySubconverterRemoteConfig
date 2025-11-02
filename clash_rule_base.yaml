@@ -1,156 +1,37 @@
 mixed-port: 7890  # socks5/http 端口
-
 allow-lan: false  # 允许局域网连接
-
 mode: rule  # 模式
-
-geox-url:  # 自定义 geodata url
-  geoip: 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat'
-  geosite: 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat'
-  
 geo-auto-update: true  # 是否自动更新 geodata
 geo-update-interval: 24  # 更新间隔，单位：小时
 geodata-mode: true
-
 log-level: info  # 日志等级
-
 ipv6: false  # ipv6 支持
-
-# profile:
-#   store-selected: true  # 存储 select 选择记录。储存 API 对策略组的选择，以供下次启动时使用
-#   store-fake-ip: true  # 持久化 fake-ip。储存 fakeip 映射表，域名再次发生连接时，使用原有映射地址
-
 unified-delay: false  # 开启统一延迟时，会计算 RTT，以消除连接握手等带来的不同类型节点的延迟差异，（不使用统一延迟检测，有些节点前戏太慢了）
 tcp-concurrent: true  # TCP并发 如果解析出多个ip，同时对所有ip进行连接，返回延迟最低的地址
 
 dns:
-  # cache-algorithm: arc
   enable: true
   listen: 0.0.0.0:8853
   ipv6: false
+  
   enhanced-mode: fake-ip  # fake-ip/redir-host
-
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:  # fakeip 过滤，以下地址不会下发 fakeip 映射用于连接
     - 'geosite:connectivity-check'
     - 'geosite:private'
-
-    - '+.+localdomain'
-    - 'xbox.*.*.microsoft.com'
-    - 'stun.*.*.*'
-    - 'stun.*.*'
-    
-    - '+.lan'
-    - '+.local'
-    
-    - '*.*.xboxlive.com'
-    - '*.*.stun.playstation.net'
-    - '*.*.*.srv.nintendo.net'
-
-    - '*.xiami.com'
-    - '*.y.qq.com'
-    - '*'
     - '*.jianguoyun.com'  # 坚果云
-    - '*.xiaomi.com'
-    - '*.ntp.org.cn'
-    - '*.openwrt.pool.ntp.org'
-    - '*.time.edu.cn'
-    - '*.music.163.com'
-    - '*.126.net'
-    - '*.kuwo.cn'
-    - '*.music.migu.cn'
-    - '*.msftconnecttest.com'
-    - '*.msftncsi.com'
-    - '*.ipv6.microsoft.com'
-    
     - 'weatherapi.market.xiaomi.com'  # 小米天气
-    - 'pool.ntp.org'
-    - 'localhost.ptlogin2.qq.com'
-    - 'time.windows.com'
-    - 'time.nist.gov'
-    - 'time.apple.com'
-    - 'time.asia.apple.com'
-    - 'time1.cloud.tencent.com'
-    - 'time.ustc.edu.cn'
-    - 'poojl.ntp.org'
-    - 'ntp.ubuntu.com'
-    - 'ntp.aliyun.com'
-    - 'ntp1.aliyun.com'
-    - 'ntp2.aliyun.com'
-    - 'ntp3.aliyun.com'
-    - 'ntp4.aliyun.com'
-    - 'ntp5.aliyun.com'
-    - 'ntp6.aliyun.com'
-    - 'ntp7.aliyun.com'
-    - 'time1.aliyun.com'
-    - 'time2.aliyun.com'
-    - 'time3.aliyun.com'
-    - 'time4.aliyun.com'
-    - 'time5.aliyun.com'
-    - 'time6.aliyun.com'
-    - 'time7.aliyun.com'
-    - 'time1.apple.com'
-    - 'time2.apple.com'
-    - 'time3.apple.com'
-    - 'time4.apple.com'
-    - 'time5.apple.com'
-    - 'time6.apple.com'
-    - 'time7.apple.com'
-    - 'time1.google.com'
-    - 'time2.google.com'
-    - 'time3.google.com'
-    - 'time4.google.com'
-    - 'music.163.com'
-    - 'musicapi.taihe.com'
-    - 'music.taihe.com'
-    - 'songsearch.kugou.com'
-    - 'trackercdn.kugou.com'
-    - 'api-jooxtt.sanook.com'
-    - 'jooxtt.sanook.com'
-    - 'api.joox.com'
-    - 'joox.com'
-    - 'y.qq.com'
-    - 'streamoc.music.tc.qq.com'
-    - 'mobileoc.music.tc.qq.com'
-    - 'isure.stream.qqmusic.qq.com'
-    - 'dl.stream.qqmusic.qq.com'
-    - 'aqqmusic.tc.qq.com'
-    - 'amobile.music.tc.qq.com'
-    - 'music.migu.cn'
-    - 'speedtest.cros.wr.pvp.net'
-    
-    
-  default-nameserver:  # 用于解析nameserver中的域名dns服务
-    - 114.114.114.114  # 114
-    - 1.1.1.1  # cf
 
-
-  nameserver-policy:
-    "geosite:cn,apple-cn,category-games@cn,private":
-      - 114.114.114.114  # 114
-      - 223.5.5.5  # a
-    "geoip:cn":
-      - 114.114.114.114  # 114
-      - 223.5.5.5  # a
-
-
-  nameserver:
-    - 1.1.1.1  # cf
-    - 8.8.8.8  # google
-    # - https://dns.cloudflare.com/dns-query  # cf
-    # - https://dns.google/dns-query  # google
-
-
-  direct-nameserver:  # 直连 域名的解析
-    - 114.114.114.114  # 114
-    - 223.5.5.5  # a
-
-
-  # proxy-server-nameserver:  # 用于解析代理节点的域名
-  #   - https://dns.cloudflare.com/dns-query  # cf
-  #   - https://dns.google/dns-query  # google
-  #   - 114.114.114.114  # 114
-  #   - 223.5.5.5  # a
-  #   # - 119.29.29.29  # t
-  #   # - https://dns.alidns.com/dns-query  # a
-  #   # - https://doh.pub/dns-query  # t
+  default-nameserver:  #基础DNS服务器，必须先有它才能使用域名类型的DNS配置，因此必须为IP，此处使用阿里云DNS
+    - tls://223.5.5.5  # a
+    - tls://223.6.6.6  # a
+  nameserver:  #在访问的国外网站没有匹配到任何域名规则，最终走了MATCH兜底规则时使用的DNS，为了确保不发生DNS泄漏和DNS污染，必须使用国外DNS
+    - https://cloudflare-dns.com/dns-query  # cf
+    - https://dns.google/dns-query  # google
+  proxy-server-nameserver:  #解析代理节点时使用的DNS，为了使下面的respect-rules生效必须设置，最好设置为国内DNS，否则在代理的第一步就可能因为连接不上国外DNS而解析不出代理节点的IP，最终倒在起点
+    - https://dns.alidns.com/dns-query  # a
+    - https://doh.pub/dns-query  # t
+  direct-nameserver:  #规则匹配到直连时使用的DNS，既然是可以直连的，当然要用国内DNS
+    - https://dns.alidns.com/dns-query  # a
+    - https://doh.pub/dns-query  # t
+  respect-rules: true  #让连接DNS服务器时能够遵循规则，也就是通过代理节点连接到上面设置的国外DNS，因为直连可能连接不上
