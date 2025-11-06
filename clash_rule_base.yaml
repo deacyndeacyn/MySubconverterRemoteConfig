@@ -1,13 +1,35 @@
-mixed-port: 7890  # socks5/http 端口
-allow-lan: false  # 允许局域网连接
-mode: rule  # 模式
-geo-auto-update: true  # 是否自动更新 geodata
-geo-update-interval: 24  # 更新间隔，单位：小时
-geodata-mode: true
-log-level: info  # 日志等级
-ipv6: false  # ipv6 支持
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+ipv6: true
 unified-delay: false  # 开启统一延迟时，会计算 RTT，以消除连接握手等带来的不同类型节点的延迟差异，（不使用统一延迟检测，有些节点前戏太慢了）
 tcp-concurrent: true  # TCP并发 如果解析出多个ip，同时对所有ip进行连接，返回延迟最低的地址
+
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  strict-route: true
+
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
 
 dns:
   enable: true
