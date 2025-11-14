@@ -6,3 +6,6 @@ payload:
 - DOMAIN-KEYWORD,icity
 - DOMAIN-KEYWORD,idays
 - DOMAIN-KEYWORD,idaily
+
+# Tailscale
+- DOMAIN-KEYWORD,tailscale
