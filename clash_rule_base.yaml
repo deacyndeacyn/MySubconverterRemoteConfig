@@ -1,14 +1,23 @@
 mixed-port: 7890
 allow-lan: true
+bind-address: "*"
 mode: rule
 log-level: info
 ipv6: true
-unified-delay: false  # 开启统一延迟时，会计算 RTT，以消除连接握手等带来的不同类型节点的延迟差异，（不使用统一延迟检测，有些节点前戏太慢了）
-tcp-concurrent: true  # TCP并发 如果解析出多个ip，同时对所有ip进行连接，返回延迟最低的地址
+global-client-fingerprint: chrome
+find-process-mode: "strict"
+unified-delay: false
+tcp-concurrent: true
+profile:
+  store-selected: true
+  store-fake-ip: true
+keep-alive-idle: 600
+keep-alive-interval: 15
+disable-keep-alive: false
 
 tun:
   enable: true
-  stack: mixed
+  stack: system
   dns-hijack:
     - "any:53"
     - "tcp://any:53"
@@ -16,6 +25,10 @@ tun:
   auto-redirect: true
   auto-detect-interface: true
   strict-route: true
+  mtu: 1500  # 最大传输单元
+  gso: true  # 启用通用分段卸载，仅支持 Linux
+  gso-max-size: 65536  # 通用分段卸载包的最大大小
+  udp-timeout: 300  # UDP 会话保持时间
 
 sniffer:
   enable: true
@@ -27,7 +40,11 @@ sniffer:
       ports: [443, 8443]
     QUIC:
       ports: [443, 8443]
+  force-domain:
+    - "+.v2ex.com"
   skip-domain:
+    - "+.baidu.com"
+    - "+.bilibili.com"
     - "Mijia Cloud"
     - "+.push.apple.com"
 
