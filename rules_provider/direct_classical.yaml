@@ -9,3 +9,6 @@ payload:
 
 # Tailscale
 - DOMAIN-KEYWORD,tailscale
+
+# Lyricify
+- DOMAIN-KEYWORD,lyricify
