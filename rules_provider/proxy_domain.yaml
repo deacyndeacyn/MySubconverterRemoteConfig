@@ -1,3 +1,8 @@
 payload:
 # donghuastream
 - '+.donghuastream.org'
+
+# flclash_ipapi
+- '+.ident.me'
+- '+.ip-api.com'
+- '+.ipapi.co'
