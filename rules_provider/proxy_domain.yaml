@@ -6,3 +6,6 @@ payload:
 - '+.ident.me'
 - '+.ip-api.com'
 - '+.ipapi.co'
+
+# google_gstatic
+- '+.gstatic.com'
