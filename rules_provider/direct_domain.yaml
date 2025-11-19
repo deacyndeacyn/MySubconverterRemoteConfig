@@ -67,6 +67,3 @@ payload:
 
 # win wifi认证
 - '+.msftconnecttest.com'
-
-# google_gstatic
-- '+.gstatic.com'
