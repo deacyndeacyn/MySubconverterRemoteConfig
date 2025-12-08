@@ -67,3 +67,18 @@ payload:
 
 # win wifi认证
 - '+.msftconnecttest.com'
+
+# 飞书域名
+- '+.byteeffecttos.com'
+
+# 七牛云
+- '+.qnqcdn.com'
+
+# 江西节点技术服务有限公司
+- '+.qiezibenpao.com'
+
+# 上海小度人工智能有限公司
+- '+.xdrtc.com'
+
+# 抖音支付服务工具
+- '+.doupay.com'
