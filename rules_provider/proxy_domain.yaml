@@ -9,3 +9,6 @@ payload:
 
 # google_gstatic
 - '+.gstatic.com'
+
+# 博德之门拉瑞安
+- '+.bg3.wiki'
