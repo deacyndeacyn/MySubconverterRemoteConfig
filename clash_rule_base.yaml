@@ -56,7 +56,6 @@ dns:
     geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
-  respect-rules: true
 
   # default-nameserver:
   #   - system
