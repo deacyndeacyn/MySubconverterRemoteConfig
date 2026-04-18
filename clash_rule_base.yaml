@@ -3,17 +3,11 @@ allow-lan: true
 bind-address: "*"
 mode: rule
 log-level: info
-ipv6: true
+ipv6: false
 global-client-fingerprint: chrome
 find-process-mode: "strict"
 unified-delay: false
 tcp-concurrent: true
-profile:
-  store-selected: true
-  store-fake-ip: true
-keep-alive-idle: 600
-keep-alive-interval: 15
-disable-keep-alive: false
 
 tun:
   enable: true
@@ -25,10 +19,6 @@ tun:
   auto-redirect: true
   auto-detect-interface: true
   strict-route: true
-  mtu: 1500  # 最大传输单元
-  gso: true  # 启用通用分段卸载，仅支持 Linux
-  gso-max-size: 65536  # 通用分段卸载包的最大大小
-  udp-timeout: 300  # UDP 会话保持时间
 
 sniffer:
   enable: true
@@ -38,46 +28,64 @@ sniffer:
       override-destination: true
     TLS:
       ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
-  force-domain:
-    - "+.v2ex.com"
-  skip-domain:
-    - "+.baidu.com"
-    - "+.bilibili.com"
-    - "Mijia Cloud"
-    - "+.push.apple.com"
+    # QUIC:
+    #   ports: [443, 8443]
 
 dns:
-  cache-algorithm: arc
   enable: true
   listen: 0.0.0.0:1053
-  ipv6: true
+  ipv6: false
   
-  enhanced-mode: fake-ip  # fake-ip/redir-host
+  enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:  # fakeip 过滤，以下地址不会下发 fakeip 映射用于连接
+  
+  fake-ip-filter:
     - 'geosite:connectivity-check'
     - 'geosite:private'
     - '*.jianguoyun.com'  # 坚果云
     - 'weatherapi.market.xiaomi.com'  # 小米天气
 
-  default-nameserver:  #基础DNS服务器，必须先有它才能使用域名类型的DNS配置，因此必须为IP，此处使用阿里云DNS
-    - system
-    # - 114.114.114.114
-    # - 223.5.5.5  # a
-    # - 119.29.29.29  # t
-  nameserver:  #在访问的国外网站没有匹配到任何域名规则，最终走了MATCH兜底规则时使用的DNS，为了确保不发生DNS泄漏和DNS污染，必须使用国外DNS
-    - https://cloudflare-dns.com/dns-query  # cf
-    - https://dns.google/dns-query  # google
-  proxy-server-nameserver:  #解析代理节点时使用的DNS，为了使下面的respect-rules生效必须设置，最好设置为国内DNS，否则在代理的第一步就可能因为连接不上国外DNS而解析不出代理节点的IP，最终倒在起点
-    - system
-    # - 114.114.114.114
-    # - 223.5.5.5  # a
-    # - 119.29.29.29  # t
-  direct-nameserver:  #规则匹配到直连时使用的DNS，既然是可以直连的，当然要用国内DNS
-    - system
-    # - 114.114.114.114
-    # - 223.5.5.5  # a
-    # - 119.29.29.29  # t
-  respect-rules: true  #让连接DNS服务器时能够遵循规则，也就是通过代理节点连接到上面设置的国外DNS，因为直连可能连接不上
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  fallback:
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+  respect-rules: true
+
+  # default-nameserver:
+  #   - system
+  #   # - 114.114.114.114
+  #   # - 223.5.5.5  # a
+  #   # - 119.29.29.29  # t
+  # nameserver:
+  #   - system
+  #   # - 114.114.114.114
+  #   # - 223.5.5.5  # a
+  #   # - 119.29.29.29  # t
+  #   # - https://cloudflare-dns.com/dns-query  # cf
+  #   # - https://dns.google/dns-query  # google
+  # fallback:
+  #   - https://cloudflare-dns.com/dns-query
+  #   - https://dns.google/dns-query
+  # fallback-filter:
+  #   geoip: true
+  #   geoip-code: CN
+  #   ipcidr:
+  #     - 240.0.0.0/4
+  # proxy-server-nameserver:
+  #   - system
+  #   # - 114.114.114.114
+  #   # - 223.5.5.5  # a
+  #   # - 119.29.29.29  # t
+  # direct-nameserver:
+  #   - system
+  #   # - 114.114.114.114
+  #   # - 223.5.5.5  # a
+  #   # - 119.29.29.29  # t
+  # respect-rules: true
