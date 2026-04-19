@@ -35,6 +35,7 @@ dns:
   enable: true
   listen: 0.0.0.0:1053
   ipv6: false
+  respect-rules: true
   
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -46,45 +47,16 @@ dns:
     - 'weatherapi.market.xiaomi.com'  # 小米天气
 
   nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
+    - system
   fallback:
-    - https://cloudflare-dns.com/dns-query
-    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query  # cf
+    - https://dns.google/dns-query  # google
   fallback-filter:
     geoip: true
     geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
-
-  # default-nameserver:
-  #   - system
-  #   # - 114.114.114.114
-  #   # - 223.5.5.5  # a
-  #   # - 119.29.29.29  # t
-  # nameserver:
-  #   - system
-  #   # - 114.114.114.114
-  #   # - 223.5.5.5  # a
-  #   # - 119.29.29.29  # t
-  #   # - https://cloudflare-dns.com/dns-query  # cf
-  #   # - https://dns.google/dns-query  # google
-  # fallback:
-  #   - https://cloudflare-dns.com/dns-query
-  #   - https://dns.google/dns-query
-  # fallback-filter:
-  #   geoip: true
-  #   geoip-code: CN
-  #   ipcidr:
-  #     - 240.0.0.0/4
-  # proxy-server-nameserver:
-  #   - system
-  #   # - 114.114.114.114
-  #   # - 223.5.5.5  # a
-  #   # - 119.29.29.29  # t
-  # direct-nameserver:
-  #   - system
-  #   # - 114.114.114.114
-  #   # - 223.5.5.5  # a
-  #   # - 119.29.29.29  # t
-  # respect-rules: true
+  proxy-server-nameserver:
+    - system
+  direct-nameserver:
+    - system
