@@ -82,3 +82,6 @@ payload:
 
 # 抖音支付服务工具
 - '+.doupay.com'
+
+# ms 网络状态检测
+- '+.msftconnecttest.com'
