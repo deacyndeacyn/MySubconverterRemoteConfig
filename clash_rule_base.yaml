@@ -67,8 +67,6 @@ dns:
     "geosite:cn,private,apple":
       - 114.114.114.114
       - 223.5.5.5
-    "geosite:category-ads-all": 
-      rcode://success
   nameserver:
     - "https://1.1.1.1/dns-query#RULES"
     - "https://8.8.8.8/dns-query#RULES"
