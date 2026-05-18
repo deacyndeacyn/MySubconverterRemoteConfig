@@ -85,3 +85,4 @@ payload:
 
 # ms 网络状态检测
 - '+.msftconnecttest.com'
+- '+.msftncsi.com'
