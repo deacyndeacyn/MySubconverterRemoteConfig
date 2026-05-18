@@ -45,7 +45,7 @@ dns:
   fake-ip-range: 198.18.0.0/16
   
   fake-ip-filter:
-    # - 'geosite:connectivity-check'
+    - 'geosite:connectivity-check'
     - 'geosite:private'
     - "*.lan"
     - "*.local"
@@ -54,10 +54,9 @@ dns:
     - "ntp.*.com"
     - "+.market.xiaomi.com"
     - "localhost.ptlogin2.qq.com"
-    - "*.msftncsi.com"
-    - "www.msftconnecttest.com"
+    
     - '*.jianguoyun.com'  # 坚果云
-    - 'weatherapi.market.xiaomi.com'  # 小米天气
+    # - 'weatherapi.market.xiaomi.com'  # 小米天气
     - 'bilibili.com'  # 哔哩哔哩
 
   default-nameserver:
