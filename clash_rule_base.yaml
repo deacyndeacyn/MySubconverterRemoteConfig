@@ -3,7 +3,7 @@ allow-lan: true
 bind-address: "*"
 mode: rule
 log-level: info
-ipv6: false
+ipv6: true
 global-client-fingerprint: chrome
 find-process-mode: "strict"
 unified-delay: false
@@ -39,7 +39,7 @@ sniffer:
 dns:
   enable: true
   listen: 0.0.0.0:1053
-  ipv6: false
+  ipv6: true
   respect-rules: true
   
   enhanced-mode: fake-ip
