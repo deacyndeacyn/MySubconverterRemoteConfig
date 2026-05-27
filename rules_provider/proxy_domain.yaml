@@ -2,13 +2,13 @@ payload:
 # donghuastream
 - '+.donghuastream.org'
 
-# flclash_ipapi
-- '+.ident.me'
+# flclash_网络检测
 - '+.ip-api.com'
+- '+.ident.me'
 - '+.ipapi.co'
-
-# google_gstatic
-- '+.gstatic.com'
+- '+.api.ip.sb'
+- '+.ipwho.is'
+- '+.ipinfo.io'
 
 # 博德之门拉瑞安
 - '+.bg3.wiki'
