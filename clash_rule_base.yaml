@@ -1,10 +1,9 @@
-mixed-port: 7890
+mixed-port: 11778
 allow-lan: true
 bind-address: "*"
 mode: rule
 log-level: debug
 ipv6: true
-global-client-fingerprint: chrome
 find-process-mode: "strict"
 unified-delay: false
 tcp-concurrent: true
