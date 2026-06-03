@@ -4,3 +4,8 @@ payload:
 
 # 博德之门拉瑞安
 - DOMAIN-KEYWORD,larian
+
+# Flclash(bettbox)
+- IP-CIDR,142.91.108.215/32
+- IP-CIDR,209.9.203.21/32
+- IP-CIDR,192.124.176.0/24
