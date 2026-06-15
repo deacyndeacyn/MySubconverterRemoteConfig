@@ -56,6 +56,7 @@ dns:
   respect-rules: true
   use-hosts: true
   use-system-hosts: true
+  cache-algorithm: arc
   
   enhanced-mode: fake-ip
   fake-ip-range: "198.18.0.1/16"
