@@ -97,4 +97,3 @@ dns:
     - system
     - 114.114.114.114
     - 223.5.5.5
-  direct-nameserver-follow-policy: true
