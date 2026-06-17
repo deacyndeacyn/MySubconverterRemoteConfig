@@ -48,6 +48,12 @@ ntp:
   server: "ntp.aliyun.com"
   port: 123
   interval: 60
+  
+hosts:
+  dns.alidns.com: [223.5.5.5, 223.6.6.6, 2400:3200::1, 2400:3200:baba::1]
+  doh.pub: [1.12.12.12, 1.12.12.21, 120.53.53.53]
+  dns.google: [8.8.8.8, 8.8.4.4, 2001:4860:4860::8888, 2001:4860:4860::8844]
+  cloudflare-dns.com: [1.1.1.1, 1.0.0.1, 2606:4700:4700::1111, 2606:4700:4700::1001]
 
 dns:
   enable: true
@@ -80,20 +86,21 @@ dns:
     # - "www.bilibili.com"  # 哔哩哔哩
     - "+.infinitynewtab.com"  # infinity标签页
 
-  default-nameserver:
-    - 114.114.114.114
-    - 223.5.5.5
+  # default-nameserver:
+  #   - system
+  #   - 114.114.114.114
+  #   - 223.5.5.5
+  
   nameserver-policy:
     "geosite:cn,private,apple":
-      - 114.114.114.114
-      - 223.5.5.5
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
   nameserver:
-    - "https://1.1.1.1/dns-query#RULES"
-    - "https://8.8.8.8/dns-query#RULES"
+    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
   proxy-server-nameserver:
-    - 114.114.114.114
-    - 223.5.5.5
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
   direct-nameserver:
-    - system
-    - 114.114.114.114
-    - 223.5.5.5
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
