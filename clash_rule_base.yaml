@@ -93,14 +93,14 @@ dns:
   
   nameserver-policy:
     "geosite:cn,private,apple":
-      - https://dns.alidns.com/dns-query
-      - https://doh.pub/dns-query
+      - tls://dns.alidns.com:853
+      - tls://dot.pub:853
   nameserver:
     - https://dns.google/dns-query
     - https://cloudflare-dns.com/dns-query
   proxy-server-nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
+    - tls://dns.alidns.com:853
+    - tls://dot.pub:853
   direct-nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
+    - tls://dns.alidns.com:853
+    - tls://dot.pub:853
