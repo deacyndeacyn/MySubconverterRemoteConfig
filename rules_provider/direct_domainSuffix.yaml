@@ -65,9 +65,6 @@ payload:
 # 今日热榜
 - '+.tophub.today'
 
-# win wifi认证
-- '+.msftconnecttest.com'
-
 # 飞书域名
 - '+.byteeffecttos.com'
 
