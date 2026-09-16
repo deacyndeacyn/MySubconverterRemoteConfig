@@ -14,6 +14,6 @@ payload:
 - DOMAIN-KEYWORD,lyricify
 
 # 微信视频通话
-- PROCESS-NAME,WeChat.exe,DIRECT
-- PROCESS-NAME,Weixin.exe,DIRECT
-- PROCESS-NAME,WeChatAppEx.exe,DIRECT
+- PROCESS-NAME,WeChat.exe
+- PROCESS-NAME,Weixin.exe
+- PROCESS-NAME,WeChatAppEx.exe
