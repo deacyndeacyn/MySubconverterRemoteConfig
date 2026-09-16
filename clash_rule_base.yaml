@@ -17,30 +17,29 @@ tun:
   enable: true
   stack: mixed
   auto-route: true
-  strict-route: true
+  strict-route: false
   auto-redirect: true
   auto-detect-interface: true
+  mtu: 1400
   dns-hijack: ["udp://any:53", "tcp://any:53"]
 
 sniffer:
   enable: true
   force-dns-mapping: true
   parse-pure-ip: true
-  override-destination: true
+  override-destination: false
   sniff:
     TLS:
       ports: [443, 8443]
     HTTP:
       ports: [80, 8080-8888]
-      override-destination: true
-    QUIC:
-      ports: [443, 8443]
   force-domain: 
     - "+.v2ex.com"
   skip-domain:
     - "Mijia Cloud"
     - "+.push.apple.com"
     - "dlg.io.mi.com"
+    - "+.weixin.qq.com"
 
 ntp:
   enable: true
@@ -65,8 +64,8 @@ dns:
   cache-algorithm: arc
   
   enhanced-mode: fake-ip
-  fake-ip-range: "198.18.0.1/16"
-  fake-ip-range6: "fc00::/18"
+  fake-ip-range: "198.18.0.0/16"
+  fake-ip-range6: "fc00::/8"
   
   fake-ip-filter:
     - "geosite:connectivity-check"
@@ -82,9 +81,10 @@ dns:
     - "www.msftconnecttest.com"
     - "*.msftconnecttest.com"
     - "*.msftncsi.com"      
-    - "*.jianguoyun.com"  # 坚果云
-    # - "www.bilibili.com"  # 哔哩哔哩
-    - "+.infinitynewtab.com"  # infinity标签页
+    - "*.jianguoyun.com"
+    - "www.bilibili.com"
+    - "+.infinitynewtab.com"
+    - "+.weixin.qq.com"
 
   # default-nameserver:
   #   - system
