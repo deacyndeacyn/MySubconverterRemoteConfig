@@ -1,13 +1,10 @@
 mixed-port: 11778
-ipv6: true
+ipv6: false
 allow-lan: true
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
-bind-address: "*"
-find-process-mode: strict
-keep-alive-interval: 15
-keep-alive-idle: 15
+find-process-mode: always
 
 profile:
   store-selected: true
@@ -22,11 +19,13 @@ tun:
   auto-detect-interface: true
   mtu: 1400
   dns-hijack: ["udp://any:53", "tcp://any:53"]
+  exclude-package:
+    - com.tencent.mm
 
 sniffer:
   enable: true
   force-dns-mapping: true
-  parse-pure-ip: true
+  parse-pure-ip: false
   override-destination: false
   sniff:
     TLS:
@@ -39,14 +38,6 @@ sniffer:
     - "Mijia Cloud"
     - "+.push.apple.com"
     - "dlg.io.mi.com"
-    - "+.weixin.qq.com"
-
-ntp:
-  enable: true
-  write-to-system: false
-  server: "ntp.aliyun.com"
-  port: 123
-  interval: 60
   
 hosts:
   dns.alidns.com: [223.5.5.5, 223.6.6.6, 2400:3200::1, 2400:3200:baba::1]
@@ -57,19 +48,17 @@ hosts:
 dns:
   enable: true
   listen: :1053
-  ipv6: true
+  ipv6: false
   respect-rules: true
-  use-hosts: true
-  use-system-hosts: true
   cache-algorithm: arc
   
   enhanced-mode: fake-ip
   fake-ip-range: "198.18.0.0/16"
-  fake-ip-range6: "fc00::/8"
-  
+  fake-ip-range6: "fc00::/18"
   fake-ip-filter:
     - "geosite:connectivity-check"
     - "geosite:private"
+    - "geosite:bilibili"
     - "*.lan"
     - "*.local"
     - "*.arpa"
@@ -82,15 +71,7 @@ dns:
     - "*.msftconnecttest.com"
     - "*.msftncsi.com"      
     - "*.jianguoyun.com"
-    - "www.bilibili.com"
     - "+.infinitynewtab.com"
-    - "+.weixin.qq.com"
-
-  # default-nameserver:
-  #   - system
-  #   - 114.114.114.114
-  #   - 223.5.5.5
-  
   nameserver-policy:
     "geosite:cn,private,apple":
       - tls://dns.alidns.com:853
