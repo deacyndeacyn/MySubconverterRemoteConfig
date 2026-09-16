@@ -14,7 +14,6 @@ payload:
 - DOMAIN-KEYWORD,lyricify
 
 # 微信视频通话
-- PROCESS-NAME,com.tencent.mm
-- PROCESS-NAME,WeChat
-- DOMAIN-SUFFIX,weixin.qq.com
-- DOMAIN-KEYWORD,weixin
+- PROCESS-NAME,WeChat.exe,DIRECT
+- PROCESS-NAME,Weixin.exe,DIRECT
+- PROCESS-NAME,WeChatAppEx.exe,DIRECT
