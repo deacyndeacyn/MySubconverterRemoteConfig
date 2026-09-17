@@ -17,6 +17,7 @@ tun:
   strict-route: false
   auto-redirect: true
   auto-detect-interface: true
+  udp-timeout: 180
   mtu: 1400
   dns-hijack: ["udp://any:53", "tcp://any:53"]
   exclude-package:
